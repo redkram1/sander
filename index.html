@@ -32,46 +32,83 @@
     <section class="about" id="about">
         <div class="about-content">
             <h1>ABOUT ME</h1>
-            <p>I'm Sander Joseph Dela Cruz, an Aspiring IT student from Phinma University of Pangasinan. Currently, I'm on my 3rd year
-                as a student and I'm very much engaged in designing and brainstorming what my project outcome would be. If you enjoy
+            <p>I'm Sander Joseph Dela Cruz, aspiring IT student from Phinma University of Pangasinan. 
+                I'm very much engaged in designing and brainstorming what my project outcome would be. If you enjoy
                 your stay, witness some of my projects (will update as soon as I graduated)
             </p>
     </section>
     <div class="portfolio" id="portfolio">
         <div class="portfolio-content">
-            <h1>WORKS</h1>
+            <h1>PORTFOLIO</h1>
             <div class="work-list">
                 <div class="work">
-                    <img src="appdev.jpeg">
+                    <img src="work1.jpg">
                     <div class="layer">
-                        <h3>App Development</h3>
-                        <p>Me and my team created apps that can be helpful for mental and physical health like:
-                        Reviewer App & Fitness App
+                        <h3>Quiz App</h3>
+                        <p>An app that can help you review for the subject PED027
+                        
                         </p>
                     </div>
                 </div>   
                 <div class="work">
-                    <img src="gamedev.jpeg">
+                    <img src="work2.jpg">
                     <div class="layer">
-                        <h3>Game Development</h3>
+                        <h3>Sweat It</h3>
+                        <p>An app that lets you keep your fitness record in your phone
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="work3.jpg">
+                    <div class="layer">
+                        <h3>Bukid Bahay</h3>
                         <p>Currently, we are creating a game in which you can enjoy a classic tower defense game and also
                             a farming simulation game
                         </p>
                     </div>
                 </div>   
+
             </div>
         </div>
     </div>
     <div class="contact" id="contact">
-        <div class="contact-content">
+        <div class="container">
             
-                <div class="left">
-                <h1>CONTACT ME</h1>
-                <p>sanderjoseph25@gmail.com</p>
-                <p>09561753257</p>
-                </div>
+                    <h1>CONTACT ME</h1>
+                    <p>sanderjoseph25@gmail.com</p>
+                    <p>09561753257</p>
+                    
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+
+                    <span id="msg"></span>
             
         </div>
     </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzfVAh3tAPI4V9EQh4cFmPUxmgLFp191aGZhK6IdIzO3OlijjShsJgOnInyJ-BKFfq3xQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Submitted successfully!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },2000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
 </body>
 </html>
